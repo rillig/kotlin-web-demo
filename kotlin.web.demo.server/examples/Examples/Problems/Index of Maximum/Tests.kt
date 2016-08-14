@@ -30,14 +30,19 @@ class Tests {
     }
 
     @Test fun testIndexOfMaximum6() {
-        test(2, Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE)
+        testAnyIndex(Integer.MAX_VALUE, Integer.MAX_VALUE, Integer.MAX_VALUE)
     }
 
     @Test fun testIndexOfMaximum7() {
-        test(2, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE)
+        testAnyIndex(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE)
     }
 }
 
 fun test(expected: Int?, vararg data: Int) {
     assertEquals(expected, indexOfMax(data), "\ndata = ${Arrays.toString(data)}")
+}
+fun testAnyIndex(vararg data: Int) {
+    val result = indexOfMax(data)
+    if (result !in 0..data.size)
+        assertEquals("any index between 0 and ${data.size}", result, "\ndata = ${Arrays.toString(data)}")
 }
